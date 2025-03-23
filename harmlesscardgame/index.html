@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Harmless Card Game - An Entertaining Online Card Game Experience
+    </title>
+    <meta
+      name="description"
+      content="Play Harmless Card Game online - a deceptively simple yet incredibly engaging card game that will keep you entertained for hours."
+    />
+    <meta
+      name="keywords"
+      content="harmless card game, online card game, Mr. Magpie, browser game, free card game"
+    />
+    <link rel="canonical" href="https://harmlesscardgame.com" />
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Harmless Card Game - Play Online" />
+    <meta
+      property="og:description"
+      content="A deceptively simple yet engaging card game that will surprise you at every turn."
+    />
+    <meta property="og:url" content="https://harmlesscardgame.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              apple: {
+                blue: "#007AFF",
+                red: "#FF3B30",
+                green: "#34C759",
+                gray: "#8E8E93",
+                darkgray: "#3A3A3C",
+                lightgray: "#F2F2F7",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-apple-lightgray text-apple-darkgray;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif;
+        }
+
+        h1 {
+          @apply text-4xl md:text-5xl font-bold text-apple-blue mb-4;
+        }
+
+        h2 {
+          @apply text-2xl md:text-3xl font-semibold text-apple-darkgray mt-8 mb-4;
+        }
+
+        p {
+          @apply mb-4 leading-relaxed;
+        }
+
+        .game-container {
+          @apply w-full aspect-[16/9] max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden;
+        }
+
+        .card {
+          @apply bg-white rounded-xl shadow-md p-6 mb-6;
+        }
+
+        .container {
+          @apply px-4 md:px-8 max-w-6xl mx-auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bg-white shadow-sm py-6">
+      <div class="container">
+        <h1>Harmless Card Game</h1>
+        <p class="text-xl text-apple-blue font-medium">
+          A seemingly innocent card game with unexpected twists and turns.
+        </p>
+      </div>
+    </header>
+
+    <main class="container py-8">
+      <section class="mb-12">
+        <div class="game-container relative">
+          <iframe
+            id="gameIframe"
+            src="https://html-classic.itch.zone/html/12324848-1210010/Mr.%20Magpie's%20Harmless%20Card%20Game/index.html"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen
+            class="w-full h-full"
+          >
+          </iframe>
+          <button
+            id="fullscreenBtn"
+            class="absolute top-4 left-4 bg-apple-blue text-white p-2 rounded-lg opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg"
+            aria-label="Fullscreen"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+              />
+            </svg>
+          </button>
+        </div>
+        <p class="text-center text-sm text-apple-gray mt-2">
+          Play directly in your browser above!
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>About Harmless Card Game</h2>
+        <p>
+          Harmless Card Game is a deceptively simple browser-based card game
+          that offers an entertaining and sometimes surprising gameplay
+          experience. this game challenges players with its unique mechanics and
+          unexpected twists.
+        </p>
+        <p>
+          Don't let the "harmless" name fool you — this game will keep you on
+          your toes as you navigate through its ingenious card mechanics and
+          discover its hidden depths.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>How to Play</h2>
+        <p>
+          Push your luck in this roguelike deckbuilder. Defeat your boss... OR
+          DIE!
+        </p>
+        <p>Inspired by Inscryption and Severance.</p>
+
+        <div class="mt-4">
+          <h3 class="text-xl font-semibold text-apple-blue mb-2">
+            5 Steps to Success
+          </h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Flip over the good cards</li>
+            <li>Don't flip over the bad cards</li>
+            <li>Buy Game Breaking Perks!</li>
+            <li>Avoid Termination!</li>
+            <li>Escape?</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Game Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-apple-lightgray p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-apple-blue mb-2">
+              Engaging Gameplay
+            </h3>
+            <p class="text-sm">
+              Experience a card game that evolves as you play, keeping you
+              engaged throughout your gaming session.
+            </p>
+          </div>
+          <div class="bg-apple-lightgray p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-apple-blue mb-2">
+              Surprising Twists
+            </h3>
+            <p class="text-sm">
+              Discover unexpected turns and hidden mechanics that make each
+              playthrough unique and exciting.
+            </p>
+          </div>
+          <div class="bg-apple-lightgray p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-apple-blue mb-2">
+              Browser-Based
+            </h3>
+            <p class="text-sm">
+              Play instantly in your browser without downloads or installations
+              required.
+            </p>
+          </div>
+          <div class="bg-apple-lightgray p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-apple-blue mb-2">
+              Replayability
+            </h3>
+            <p class="text-sm">
+              With its innovative mechanics, every game session offers a fresh
+              and unique experience.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Why Players Love Harmless Card Game</h2>
+        <p>
+          Players around the world have been drawn to Harmless Card Game for its
+          clever design, engaging gameplay, and the perfect balance of
+          simplicity and depth. It's the ideal game for a quick break or an
+          extended gaming session.
+        </p>
+        <p>
+          Whether you're a casual gamer looking for some light entertainment or
+          a card game enthusiast seeking something new and intriguing, Harmless
+          Card Game offers an experience that will keep you coming back for
+          more.
+        </p>
+      </section>
+    </main>
+
+    <footer class="bg-apple-darkgray text-white py-8">
+      <div class="container">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <h2 class="text-xl font-semibold text-white mb-2">
+              Harmless Card Game
+            </h2>
+            <p class="text-apple-gray text-sm">
+              © 2023 Harmless Card Game. All rights reserved.
+            </p>
+          </div>
+          <div class="text-right">
+            <p class="text-apple-gray text-sm">
+              Website optimized for all devices
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const fullscreenBtn = document.getElementById("fullscreenBtn");
+        const gameIframe = document.getElementById("gameIframe");
+
+        fullscreenBtn.addEventListener("click", function () {
+          if (gameIframe.requestFullscreen) {
+            gameIframe.requestFullscreen();
+          } else if (gameIframe.webkitRequestFullscreen) {
+            /* Safari */
+            gameIframe.webkitRequestFullscreen();
+          } else if (gameIframe.msRequestFullscreen) {
+            /* IE11 */
+            gameIframe.msRequestFullscreen();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
