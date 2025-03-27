@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickman Ghost Online Game - Play Free Action Adventure Game | PickFreeGames.com</title>
+    <meta name="description" content="Play Stickman Ghost Online for free! An exciting action-adventure game where you become a stickman warrior fighting against evil forces. Collect coins, upgrade weapons, and become the ultimate ghost warrior.">
+    <meta name="keywords" content="stickman ghost online game, free online games, action games, adventure games, stickman games, fighting games">
+    <link rel="canonical" href="https://pickfreegames.com/stickmanghostonlinegame/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pickfreegames.com/stickmanghostonlinegame/">
+    <meta property="og:title" content="Stickman Ghost Online Game - Free Action Adventure">
+    <meta property="og:description" content="Play as a stickman warrior in this exciting action-adventure game. Fight enemies, collect coins, and become the ultimate ghost warrior!">
+    <meta property="og:image" content="https://pickfreegames.com/images/stickman-ghost-og.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pickfreegames.com/stickmanghostonlinegame/">
+    <meta property="twitter:title" content="Stickman Ghost Online Game - Free Action Adventure">
+    <meta property="twitter:description" content="Play as a stickman warrior in this exciting action-adventure game. Fight enemies, collect coins, and become the ultimate ghost warrior!">
+    <meta property="twitter:image" content="https://pickfreegames.com/images/stickman-ghost-twitter.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .fullscreen-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .fullscreen-btn:hover {
+            background: rgba(31, 41, 55, 0.95);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .fullscreen-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        .title-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 3.5rem 2rem;
+            border-radius: 1.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-size: 200% auto;
+            animation: backgroundGradientFlow 8s ease infinite;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .title-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .animated-title {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #2d3748, #4a5568, #2c5282, #1e3a8a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.3s ease;
+            background-size: 300% auto;
+            animation: gradientFlow 5s ease infinite;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .animated-title {
+                font-size: 5.5rem;
+            }
+        }
+        .title-card:hover .animated-title {
+            background: linear-gradient(45deg, #f59e0b, #ec4899, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .title-card:hover::before {
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 60%);
+        }
+        .title-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            opacity: 0.7;
+            filter: blur(1px);
+        }
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        @keyframes backgroundGradientFlow {
+            0% {
+                background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95), rgba(30, 41, 59, 0.95));
+                background-position: 0% 50%;
+            }
+            50% {
+                background: linear-gradient(135deg, rgba(31, 41, 55, 0.95), rgba(30, 41, 59, 0.95), rgba(17, 24, 39, 0.95));
+                background-position: 100% 50%;
+            }
+            100% {
+                background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95), rgba(30, 41, 59, 0.95));
+                background-position: 0% 50%;
+            }
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(31, 41, 55, 0.7);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(8px);
+            max-height: 250px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(75, 85, 99, 0.5) rgba(31, 41, 55, 0.3);
+        }
+        .nav-links::-webkit-scrollbar {
+            width: 8px;
+        }
+        .nav-links::-webkit-scrollbar-track {
+            background: rgba(31, 41, 55, 0.3);
+            border-radius: 4px;
+        }
+        .nav-links::-webkit-scrollbar-thumb {
+            background: rgba(75, 85, 99, 0.5);
+            border-radius: 4px;
+        }
+        .category-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(55, 65, 81, 0.7);
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            cursor: pointer;
+        }
+        .category-tag:hover {
+            background: rgba(75, 85, 99, 0.9);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .category-tag.active {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .category-count {
+            display: inline-block;
+            margin-left: 0.5rem;
+            padding: 0.125rem 0.375rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+        .game-card {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        .game-card.filtered-out {
+            transform: scale(0);
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+        
+        .filter-group {
+            width: 50%;
+            max-width: 180px;
+        }
+        
+        .filter-container select {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            background-color: rgba(55, 65, 81, 0.8);
+            color: white;
+            border: 1px solid rgba(75, 85, 99, 0.4);
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .filter-container select:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(75, 85, 99, 0.9);
+        }
+        
+        .filter-container button {
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .filter-container button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Background container for Three.js effects -->
+    <div id="bg-container" class="fixed inset-0 -z-10"></div>
+    
+    <main class="container mx-auto px-4 py-8">
+        <div class="title-card">
+            <h1 class="animated-title text-center">Stickman Ghost Online Game</h1>
+        </div>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Main Content - Game Frame -->
+            <div class="lg:w-3/4">
+                <div class="relative w-full aspect-video bg-gray-800 rounded-lg overflow-hidden mb-4">
+                    <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle Fullscreen">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                        </svg>
+                        <span>Fullscreen</span>
+                    </button>
+                    <iframe 
+                        src="https://uncached.gamemonetize.co/qsd2h427rg6z6gza2xekqsdwgk1dwksa/?referer=original" 
+                        class="absolute inset-0 w-full h-full"
+                        frameborder="0"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <!-- Game Controls -->
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <h2 class="text-xl font-semibold mb-2">How to Play</h2>
+                    <ul class="text-gray-300 grid grid-cols-2 md:grid-cols-4 gap-2">
+                        <li class="flex items-center">
+                            <span class="mr-2">WASD</span> Move
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2">Space</span> Jump
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2">Click</span> Attack
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2">🎮</span> Mobile Controls
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:w-1/4 space-y-6">
+                <!-- Game Description -->
+                <section class="bg-gray-800 p-4 rounded-lg">
+                    <h2 class="text-xl font-semibold mb-3">About The Game</h2>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Embark on an epic adventure in Stickman Ghost Online, where you'll transform into a powerful stickman warrior fighting against dark forces. This action-packed adventure game combines intense combat with strategic gameplay as you battle through various levels filled with challenging enemies.
+                    </p>
+                </section>
+
+                <!-- Game Features -->
+                <section class="bg-gray-800 p-4 rounded-lg">
+                    <h2 class="text-xl font-semibold mb-3">Game Features</h2>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <span class="mr-2">⚔️</span> Dynamic combat system
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2">💰</span> Collect coins & upgrade
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2">🎮</span> PC & mobile support
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2">🏆</span> Multiple levels
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Pro Tips -->
+                <section class="bg-gray-800 p-4 rounded-lg">
+                    <h2 class="text-xl font-semibold mb-3">Pro Tips</h2>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li>• Master attack timing</li>
+                        <li>• Collect all coins</li>
+                        <li>• Use environment</li>
+                        <li>• Save abilities for bosses</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 PickFreeGames.com - All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const gameContainer = fullscreenBtn.parentElement;
+
+            function toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    gameContainer.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+            // Update button text based on fullscreen state
+            document.addEventListener('fullscreenchange', function() {
+                if (document.fullscreenElement) {
+                    fullscreenBtn.querySelector('span').textContent = 'Exit Fullscreen';
+                } else {
+                    fullscreenBtn.querySelector('span').textContent = 'Fullscreen';
+                }
+            });
+            
+            // Fix filter value update issue
+            const genreFilter = document.getElementById('genre-filter');
+            const platformFilter = document.getElementById('platform-filter');
+            const ratingFilter = document.getElementById('rating-filter');
+            const releaseFilter = document.getElementById('release-filter');
+            const searchBtn = document.getElementById('search-btn');
+            
+            // Add change event listeners to update values
+            genreFilter.addEventListener('change', function() {
+                this.setAttribute('value', this.value);
+            });
+            
+            platformFilter.addEventListener('change', function() {
+                this.setAttribute('value', this.value);
+            });
+            
+            ratingFilter.addEventListener('change', function() {
+                this.setAttribute('value', this.value);
+            });
+            
+            releaseFilter.addEventListener('change', function() {
+                this.setAttribute('value', this.value);
+            });
+            
+            // Search button event
+            searchBtn.addEventListener('click', function() {
+                console.log('Filter values:', {
+                    genre: genreFilter.value,
+                    platform: platformFilter.value,
+                    rating: ratingFilter.value,
+                    release: releaseFilter.value
+                });
+                
+                // You can add your filter logic here or call filterGames function
+                filterGames();
+            });
+            
+            function filterGames() {
+                // Get current filter values
+                const genre = genreFilter.value;
+                const platform = platformFilter.value;
+                const rating = ratingFilter.value;
+                const releaseDate = releaseFilter.value;
+                
+                console.log('Filtering games with:', {
+                    genre: genre,
+                    platform: platform, 
+                    rating: rating,
+                    release: releaseDate
+                });
+                
+                // Filter logic would go here
+                // This is a placeholder for actual filtering
+            }
+            
+            // Category filter functionality
+            const categoryTags = document.querySelectorAll('.category-tag');
+            const gameCards = document.querySelectorAll('.game-card');
+            
+            categoryTags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active tag
+                    categoryTags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const selectedCategory = this.getAttribute('data-category');
+                    
+                    // If on the home page with multiple games, filter them
+                    if (gameCards.length > 0) {
+                        filterGames(selectedCategory);
+                    }
+                    
+                    // Update URL hash
+                    window.location.hash = selectedCategory;
+                });
+            });
+            
+            // Check URL hash on page load
+            const initialCategory = window.location.hash.substring(1);
+            if (initialCategory) {
+                const targetTag = document.querySelector(`.category-tag[data-category="${initialCategory}"]`);
+                if (targetTag) {
+                    targetTag.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
